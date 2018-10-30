@@ -1,9 +1,0 @@
-com\springboot\demo\controller\TestEnvironment.class
-com\springboot\demo\service\UserServiceImpl.class
-com\springboot\demo\TestApplication.class
-com\springboot\demo\TestConfigurationProperties.class
-com\springboot\demo\entity\User.class
-com\springboot\demo\config\DruidConfig.class
-com\springboot\demo\service\UserService.class
-com\springboot\demo\dao\UserDao.class
-com\springboot\demo\controller\TestController.class
