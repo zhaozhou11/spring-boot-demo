@@ -14,7 +14,7 @@
   </sql>
 
 
-<!--  通过ID获取飞行日志信息-->
+<!--  通过ID获取用户信息-->
   <select id="getUserById" parameterType="Long" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />

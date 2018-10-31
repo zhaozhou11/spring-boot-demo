@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info" name="defaultLogConfig"
+               packages="">
+    <properties>
+        <property name="LOG_HOME">C:\Users\zhaozhou\Desktop\demo</property>
+        <property name="patternlayout">%-d{yyyy-MM-dd HH:mm:ss}[ %t:%r ]- [%X{userName}] - [%X{reqId}] - [%-5p] %c-%M:%L - %m%n%throwable{full}</property>
+    </properties>
+    <Appenders>
+        <!--这个输出控制台的配置-->
+        <!--follow 不知道干嘛的-->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${patternlayout}" />
+        </Console>
+        <RollingFile name="LOGERROR" fileName="${LOG_HOME}/error_log.log" filePattern="${LOG_HOME}/error/log-error-%d{yyyy-MM-dd}.%i.log">
+            <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${patternlayout}"/>
+            <SizeBasedTriggeringPolicy size="100MB"/>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+
+        <RollingFile name="LOGWARN" fileName="${LOG_HOME}/warn_log.log" filePattern="${LOG_HOME}/warn/log-warn-%d{yyyy-MM-dd}.%i.log">
+            <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${patternlayout}"/>
+            <SizeBasedTriggeringPolicy size="100MB"/>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+
+        <RollingFile name="LOGALL" fileName="${LOG_HOME}/all_log.log" filePattern="${LOG_HOME}/all/log-all-%d{yyyy-MM-dd}.%i.log">
+            <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="ACCEPT"/>
+            <PatternLayout pattern="${patternlayout}"/>
+            <SizeBasedTriggeringPolicy size="100MB"/>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+
+    </Appenders>
+    <Loggers>
+
+        <!-- spring log -->
+        <AsyncLogger name="org.springframework" level="warn"/>
+
+        <!-- activiti log -->
+        <AsyncLogger name="org.activiti" level="info" />
+
+
+        <AsyncLogger name="org.mybatis" level="debug" />
+
+        <AsyncLogger name="org.apache" level="info" />
+
+        <AsyncLogger name="com.springboot.demo" level="debug"/>
+
+
+        <Root level="debug">
+            <AppenderRef ref="LOGERROR" />
+            <AppenderRef ref="LOGWARN"/>
+            <AppenderRef ref="LOGALL"/>
+            <AppenderRef ref="Console" />
+        </Root>
+    </Loggers>
+</Configuration>

@@ -3,6 +3,7 @@ package com.springboot.demo.controller;
 import com.springboot.demo.TestConfigurationProperties;
 import com.springboot.demo.entity.User;
 import com.springboot.demo.service.UserService;
+import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
